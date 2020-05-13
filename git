@@ -1,0 +1,39 @@
+——创建一个版本库 git init
+——创建版本 （即将在工作区编辑好的内容上传到暂存区，然后提交到版本库）
+git add 文件名  （把工作区的修改放入暂存区）
+git commit -m '版本说明信息'   （把暂存区的修改一次性做一次版本记录）
+编辑文件都是在工作区
+若是未将文件放入暂存区，则未对文件进行跟踪，则此时将文件删除则找不回，除非花钱找专门人员 
+——查看版本记录 
+git log
+git log --pretty=oneline (将内容合并成一条条显示）
+git log --pretty=oneline --graph （将创建过程以图显示）
+——回到某一个版本
+git reset --hard HEAD^  (HEAD :当前最新版本，HEAD^: 当前版本的前一版，HEAD^^: 当前版本的前两版，以此类推；HEAD~1：当前版本前一版，HEAD~100：当前版本前100版）
+git reset --hard 版本号
+——查看操作记录 git reflog
+——查看当前工作树状态 git status
+——git管理的文件的修改，只会提交暂存区的修改来创建版本
+1.丢弃工作区的改动  git checkout --<文件>
+2.丢弃暂存区的改动  
+git reset HEAD file 可以把暂存区的修改撤销掉，重新放回工作区
+git checkout --file
+3.丢弃版本库的改动，即撤销本次提交，用版本回退
+——对比工作区和某个版本文件的不同 git diff HEAD -- code.txt
+对比两个版本间文件的不同  git diff HEAD HEAD^ -- code.txt
+——删除文件 git rm file
+——删除分支 git branch -d <name>
+——查看分支 git branch
+——创建分支 git branch <name>
+——创建+切换分支 git chenkout -b <name>
+——切换分支 git checkout <name>
+——合并某分支到当前分支 git merge <name>
+禁用fast forward 合并分支 git merge --no-ff -m '信息说明' <name>
+——修复bug时，通过创建新的bug分支进行修复，然后使用no-ff模式合并，最后删除。当手头工作没有完成时，先把现场git stash ,然后去修复bug，修复后，在git stash pop ,回到工作现场
+储藏当前工作现场 git stash
+回到工作现场 git stash pop
+——分支冲突：两个分支都有了新的提交记录并且修改的是同一个文件
+——复制仓库内容 git clone ssh地址
+——推送到github  git push origin 分支名称
+——将本地分支跟踪服务器分支 git branch --net-upstream-to=origin/远程分支名称 本地分支名称
+——从远程分支上拉取代码 git pull origin 分支名称
